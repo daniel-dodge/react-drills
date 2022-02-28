@@ -1,24 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
+// import Todo from "./Todo.js"
+import NewTask from './NewTask.js'
+import List from './List.js'
 
 function App() {
+  const data = ['stuff','more stuff']
+  const [tasks, updateTasks] = useState(data)
+  const handleTaskAdd = (task) => {
+    updateTasks([...tasks, task])
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>My to-do list:</h1>
+      <NewTask add = {handleTaskAdd}/>
+      <List tasks={tasks}/>
+      
     </div>
   );
 }
